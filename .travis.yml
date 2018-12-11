@@ -8,3 +8,16 @@ before_install:
 script:
   - docker run swsan/docker-react npm run test -- --coverage
  
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react-sw"
+  env: "DockerReactSw-env"
+  bucket_name: "elasticbeanstalk-us-east-1-051478849209"
+  bucket_path: "docker-react-sw"
+  on: 
+    branch: master
+  access_key_key: $AWS_Access_key
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
+   
